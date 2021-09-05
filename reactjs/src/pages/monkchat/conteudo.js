@@ -8,6 +8,9 @@ import { ChatButton, ChatInput, ChatTextArea } from '../../components/outros/inp
 
 import { useState, useRef } from 'react';
 
+import Cookies from 'js-cookie'
+import { useHistory } from 'react-router-dom'
+
 import Api from '../../service/api';
 const api = new Api();
 
@@ -19,6 +22,16 @@ export default function Conteudo() {
     const [msg, setMsg] = useState('')
 
     const loading = useRef(null);
+
+    const navigation = useHistory();
+
+
+
+    let usuarioLogado = Cookies.get('usuario-logado');
+    if (usuarioLogado == null )
+        navigation.push('/')
+
+
 
 
     const validarResposta = (resp) => {
